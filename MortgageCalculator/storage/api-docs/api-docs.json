@@ -1,0 +1,547 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mortgage Calculator API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/authentication/register": {
+            "post": {
+                "tags": [
+                    "/authentication"
+                ],
+                "summary": "sign up",
+                "description": "register by email, password",
+                "operationId": "75462ced126f8e0caa3c79d9a0d3ded0",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "John Johnson"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "PassWord12345"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful user registration",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The user has been successfully registered"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Wrong credentials for registration"
+                    }
+                }
+            }
+        },
+        "/authentication/login": {
+            "post": {
+                "tags": [
+                    "/authentication"
+                ],
+                "summary": "sign in",
+                "description": "login by email, password",
+                "operationId": "65c1a2df4b8dab8aa01a48a5251e395f",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "PassWord12345"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                }
+            }
+        },
+        "/mortgage-programs": {
+            "get": {
+                "tags": [
+                    "/mortgage-programs"
+                ],
+                "operationId": "97c965a8219383e58fd4d36460d98ce9",
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "/mortgage-programs"
+                ],
+                "operationId": "d9e3cb8c5f67b1d1c3195a986f1e55be",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "bank_name",
+                                    "program_name",
+                                    "realty_type",
+                                    "interest_rate",
+                                    "minimum_payment",
+                                    "maximum_amoumt"
+                                ],
+                                "properties": {
+                                    "bank_name": {
+                                        "type": "string",
+                                        "format": "bank name",
+                                        "example": "Sberbank"
+                                    },
+                                    "program_name": {
+                                        "type": "string",
+                                        "format": "program name",
+                                        "example": "невыгодная ипотека"
+                                    },
+                                    "realty_type": {
+                                        "type": "string",
+                                        "format": "realty type",
+                                        "example": "жилое"
+                                    },
+                                    "interest_rate": {
+                                        "type": "decimal",
+                                        "format": "interest rate",
+                                        "example": "10"
+                                    },
+                                    "minimum_payment": {
+                                        "type": "decimal",
+                                        "format": "minimum payment",
+                                        "example": "100000"
+                                    },
+                                    "maximum_amount": {
+                                        "type": "decimal",
+                                        "format": "maximum amount",
+                                        "example": "500000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/mortgage-programs/{id}": {
+            "get": {
+                "tags": [
+                    "/mortgage-programs"
+                ],
+                "operationId": "1fe5194d7df099a74c9863bf86eafbb2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "/mortgage-programs"
+                ],
+                "operationId": "c52eb1aaad6d696d4811020a6f1bb7f2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "bank_name",
+                                    "program_name",
+                                    "realty_type",
+                                    "interest_rate",
+                                    "minimum_payment",
+                                    "maximum_amoumt"
+                                ],
+                                "properties": {
+                                    "bank_name": {
+                                        "type": "string",
+                                        "format": "bank name",
+                                        "example": "Sberbank"
+                                    },
+                                    "program_name": {
+                                        "type": "string",
+                                        "format": "program name",
+                                        "example": "невыгодная ипотека"
+                                    },
+                                    "realty_type": {
+                                        "type": "string",
+                                        "format": "realty type",
+                                        "example": "жилое"
+                                    },
+                                    "interest_rate": {
+                                        "type": "decimal",
+                                        "format": "interest rate",
+                                        "example": "10"
+                                    },
+                                    "minimum_payment": {
+                                        "type": "decimal",
+                                        "format": "minimum payment",
+                                        "example": "100000"
+                                    },
+                                    "maximum_amount": {
+                                        "type": "decimal",
+                                        "format": "maximum amount",
+                                        "example": "500000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "/mortgage-programs"
+                ],
+                "operationId": "9be44a941ef2c29e069692890dda960c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/payment-requests": {
+            "post": {
+                "tags": [
+                    "/payment-requests"
+                ],
+                "operationId": "8872352d33c6b1ca389c69ada69c3bd6",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "age",
+                                    "is_a_bank_client",
+                                    "property_value",
+                                    "initial_payment",
+                                    "loan_term",
+                                    "property_type"
+                                ],
+                                "properties": {
+                                    "age": {
+                                        "type": "integer",
+                                        "format": "age",
+                                        "example": "25"
+                                    },
+                                    "is_a_bank_client": {
+                                        "type": "boolean",
+                                        "format": "is_a_bank_client",
+                                        "example": "true"
+                                    },
+                                    "property_value": {
+                                        "type": "decimal",
+                                        "format": "property_value",
+                                        "example": "250000"
+                                    },
+                                    "initial_payment": {
+                                        "type": "decimal",
+                                        "format": "initial_payment",
+                                        "example": "125000"
+                                    },
+                                    "loan_term": {
+                                        "type": "integer",
+                                        "format": "loan_term",
+                                        "example": "36"
+                                    },
+                                    "property_type": {
+                                        "type": "string",
+                                        "format": "property_type",
+                                        "example": "жилое"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/payment-schedule/{mortgage_program_id}": {
+            "post": {
+                "tags": [
+                    "/payment-schedule"
+                ],
+                "operationId": "7621eb27683cdac41b017c24a009a043",
+                "parameters": [
+                    {
+                        "name": "mortgage_program_id",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "age",
+                                    "is_a_bank_client",
+                                    "property_value",
+                                    "initial_payment",
+                                    "loan_term",
+                                    "property_type"
+                                ],
+                                "properties": {
+                                    "property_value": {
+                                        "type": "decimal",
+                                        "format": "property_value",
+                                        "example": "245000"
+                                    },
+                                    "initial_payment": {
+                                        "type": "decimal",
+                                        "format": "initial_payment",
+                                        "example": "125000"
+                                    },
+                                    "loan_term": {
+                                        "type": "integer",
+                                        "format": "loan_term",
+                                        "example": "24"
+                                    },
+                                    "payment_type": {
+                                        "type": "string",
+                                        "format": "property_type",
+                                        "example": "аннуитетный"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "/users"
+                ],
+                "operationId": "cef8a64dad4500c2b80708ac3f63c2b2",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/users/{userId}/change_role": {
+            "post": {
+                "tags": [
+                    "/users"
+                ],
+                "operationId": "3360eceecdfe28dc0e0b4b58d77cb3b6",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "role": {
+                                        "type": "string",
+                                        "format": "role",
+                                        "example": "moderator"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
